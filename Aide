@@ -1,12 +1,12 @@
 Vue
-  Authentification du joueurs
+  Authentification du joueurs FAIT
     Si OK
-      afficher le plateau de jeu
+      afficher le plateau de jeu FAIT
     Sinon
-      afficher vue Mauvaise authentification
+      afficher vue Mauvaise authentification FAIT
   Jeu
     Plateau de jeu
-      Sélection de 2 villes
+      Sélection de 2 villes (boutons)
         Si possible (Ville sur la même abscisse ou ordonnée avec une autre ville
         && contraintes liées au nombre de ponts maximum non atteint
         && pas de croisement entre les liens)
