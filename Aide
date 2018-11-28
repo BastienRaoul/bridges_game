@@ -1,0 +1,30 @@
+Vue
+  Authentification du joueurs
+    Si OK
+      afficher le plateau de jeu
+    Sinon
+      afficher vue Mauvaise authentification
+  Jeu
+    Plateau de jeu
+      Sélection de 2 villes
+        Si possible (Ville sur la même abscisse ou ordonnée avec une autre ville
+        && contraintes liées au nombre de ponts maximum non atteint
+        && pas de croisement entre les liens)
+          liée les deux villes
+        Sinon
+          afficher erreur (impossibilité d'établir le pont)
+      Une partie est gagné
+        tous les ponts ont été découvert
+      Une partie est perdu
+        à la fin du temps limite
+        un nombre d'erreur a été atteint
+        réinitialisation du jeu
+    Options du jeu
+      Réinitialiser la partie (on garde le même plateau, on supprime les liens, on réinitialise la limite de temps)
+      Créer une nouvelle partie (donc les villes ne sont plus les même)
+      Revenir a la page d'authentification
+      Annuler le dernier lien créé
+      Afficher les instructions pour le jeu (les règles)
+  Statistiques
+    Nombre de partie gagné / perdu sur le nombre de partie total
+    Classement des 3 meilleurs joueurs avec leurs statistiques
