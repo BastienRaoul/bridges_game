@@ -20,11 +20,15 @@ $this->villes[6][0]=new Ville("6",2,0);
 }
 
 
-// sélecteur qui retourne la ville en position $i et $j 
+// sélecteur qui retourne la ville en position $i et $j
 // précondition: la ville en position $i et $j existe
-          
+
 function getVille($i,$j){
-return $this->villes[$i][$j];
+  return $this->villes[$i][$j];
+}
+
+function getVilles(){
+  return $this->villes;
 }
 
 
@@ -36,7 +40,7 @@ $this->villes[$i][$j]->setNombrePonts($nombrePonts);
 }
 
 
-// permet de tester si la ville en position $i et $j existe 
+// permet de tester si la ville en position $i et $j existe
 // postcondition: vrai si la ville existe, faux sinon
 
 function existe($i,$j){
@@ -45,7 +49,13 @@ return isset($this->villes[$i][$j]);
 
 //rajout d'éventuelles méthodes
 
-
-
-
+function toString(){
+  for ($i = 0; $i <= 6; $i++){
+    for ($j = 0; $j <= 6; $j++){
+      if ($this->getVille($i, $j)) {
+        echo "yes" . $i . $j;
+      }
+    }
+  }
+}
 }
