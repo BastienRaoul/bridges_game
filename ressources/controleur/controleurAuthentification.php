@@ -25,8 +25,7 @@ class controleurAuthentification {
   function verification($username, $password) {
     if ($this->modele->exists($username, $password)) {
       $villes = $this->villes->getVilles();
-      $this->vue->affichagePlateau();
-      $this->vue->construirePlateau($villes);
+      $this->vue->affichagePlateau($villes);
     } else {
       $this->authentification->errorAuthentification();
       $this->authentification->demandePseudo();
