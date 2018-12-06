@@ -13,7 +13,7 @@ class Authentification {
   }
 
   function deconnexion() {
-    echo "<h1> Deconnexion </h1> </br>"
+    echo "<h1> Deconnexion </h1> </br>";
   }
 }
 ?>
