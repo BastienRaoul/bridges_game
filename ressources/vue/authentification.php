@@ -11,5 +11,9 @@ class Authentification {
   function errorAuthentification() {
     echo "<h1> Mauvais Pseudo ou Mauvais Password </h1> </br>";
   }
+
+  function deconnexion() {
+    echo "<h1> Deconnexion </h1> </br>"
+  }
 }
 ?>

@@ -23,13 +23,19 @@ class controleurAuthentification {
   }
 
   function verification($username, $password) {
-    if ($this->modele->exists($username, $password)) {
-      $villes = $this->villes->getVilles();
-      $this->vue->affichagePlateau($villes);
+    if (isset($_SESSION["connecter"])){
+      if ($this->modele->exists($username, $password)) {
+        $villes = $this->villes->getVilles();
+        $this->vue->affichagePlateau($villes);
+      } else {
+        $this->authentification->errorAuthentification();
+        $this->authentification->demandePseudo();
+      }
     } else {
-      $this->authentification->errorAuthentification();
+      $this->authentification->deconnexion();
       $this->authentification->demandePseudo();
     }
+
   }
 }
 ?>

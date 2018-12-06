@@ -10,6 +10,36 @@ class VueJeu {
         <meta charset = "utf-8"/>
       </head>
       <body>
+        <form method="post" action="" style="white-space: nowrap">
+          <input type="submit" name="deconnexion" id="deconnexion" value="Deconnexion">
+          <h1>Bridges</h1>
+          <div id="jeu">
+            <table>
+                <?php
+                $villes = unserialize($_SESSION['villes']);
+                if (isset($_SESSION['ville'])) {
+                    $ville = unserialize($_SESSION['ville']);
+                }
+            for ($i = 0; $i < 7; $i++) {
+              echo "<tr>";
+              for ($j = 0; $j < 7; $j++) {
+                echo "<td>";
+                if ($villes->existe($i, $j)) {
+                  if ($ville == $villes->getVille($i, $j)->getId()){
+                    echo "<a class='selectionne' href='?ville=".$villes->getVille($i, $j)->getId()."'>".$villes->getVille($i, $j)->getNombrePontsMax()."</a>";
+                  }else
+                      echo "<a href='?ville=".$villes->getVille($i, $j)->getId()."'>".$villes->getVille($i, $j)->getNombrePontsMax()."</a>";
+                } else {
+                  echo "&nbsp";
+                }
+                echo "</td>";
+              }
+              echo "</tr>";
+            }
+            ?>
+           </table>
+          </div>
+        </form>
       </body>
     </html>
   <?php
