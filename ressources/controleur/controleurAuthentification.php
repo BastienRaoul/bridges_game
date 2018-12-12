@@ -22,17 +22,13 @@ class controleurAuthentification {
     $this->authentification->demandePseudo();
   }
 
-  function connexion() {
-    if (isset($_POST["pseudo"]) && isset($_POST["password"])){
-      if ($this->modele->exists($_POST["pseudo"], $_POST["password"])){
-        $_SESSION["connecter"] = true;
-        $_SESSION['villes'] = serialize($this->villes);
-        $this->vue->afficherJeu();
-      } else {
-        $this->authentification->errorAuthentification();
-        $this->authentification->demandePseudo();
-      }
+  function connexion($pseudo, $password) {
+    if ($this->modele->exists($pseudo, $password)){
+      $_SESSION["connecter"] = true;
+      $_SESSION['villes'] = serialize($this->villes);
+      $this->vue->afficherJeu();
     } else {
+      $this->authentification->errorAuthentification();
       $this->authentification->demandePseudo();
     }
   }

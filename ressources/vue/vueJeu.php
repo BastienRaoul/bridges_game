@@ -6,7 +6,7 @@ class VueJeu {
     <html>
       <head>
         <title> Bridges </title>
-        <link rel = "stylesheet" type = "text/css" href = " css.css">
+        <link rel = "stylesheet" type = "text/css" href = " style.css">
         <meta charset = "utf-8"/>
       </head>
       <body>

@@ -17,6 +17,11 @@ class Routeur {
   }
 
   public function routerRequete() {
+    echo '<form method="post" action="" style="white-space: nowrap"> <input type="submit" name="deconnexion" id="deconnexion" value="Deconnexion"> </form>';
+    if (isset($_POST["deconnexion"])){
+      session_destroy();
+    }
+
     if (!isset($_SESSION["connecter"])){
       $_SESSION["connecter"] = false;
     }
@@ -24,9 +29,12 @@ class Routeur {
     if ($_SESSION["connecter"] == true){
       $this->ctrlJeu->jeu();
     } else {
-      $this->ctrlAuthentification->Connexion();
+      if(isset($_POST["pseudo"], $_POST["password"])){
+        $this->ctrlAuthentification->connexion($_POST["pseudo"], $_POST["password"]);
+      } else {
+        $this->ctrlAuthentification->accueil();
+      }
     }
   }
-
 }
 ?>

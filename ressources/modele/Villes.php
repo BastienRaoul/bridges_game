@@ -3,75 +3,85 @@
 require "Ville.php";
 
 class Villes{
+  private $villes;
+  public function __construct(){
+    $this->villes[0][0]=new Ville("0",3,0);
+    $this->villes[0][6]=new Ville("1",2,0);
+    $this->villes[3][0]=new Ville("2",6,0);
+    $this->villes[3][5]=new Ville("3",2,0);
+    $this->villes[5][1]=new Ville("4",1,0);
+    $this->villes[5][6]=new Ville("5",2,0);
+    $this->villes[6][0]=new Ville("6",2,0);
+  }
 
-private $villes;
+  public function getVille($i,$j){
+    return $this->villes[$i][$j];
+  }
 
-function __construct(){
-// tableau représentatif d'un jeu qui servira à développer votre code
+  public function getVilles(){
+    return $this->villes;
+  }
 
-$this->villes[0][0]=new Ville("0",3,0);
-$this->villes[0][6]=new Ville("1",2,0);
-$this->villes[3][0]=new Ville("2",6,0);
-$this->villes[3][5]=new Ville("3",2,0);
-$this->villes[5][1]=new Ville("4",1,0);
-$this->villes[5][6]=new Ville("5",2,0);
-$this->villes[6][0]=new Ville("6",2,0);
-
-}
-
-
-// sélecteur qui retourne la ville en position $i et $j
-// précondition: la ville en position $i et $j existe
-
-function getVille($i,$j){
-  return $this->villes[$i][$j];
-}
-
-function getVilles(){
-  return $this->villes;
-}
-
-
-// modifieur qui value le nombre de ponts de la ville en position $i et $j;
-// précondition: la ville en position $i et $j existe
-
-function setVille($i,$j,$nombrePonts){
-$this->villes[$i][$j]->setNombrePonts($nombrePonts);
-}
-
-
-// permet de tester si la ville en position $i et $j existe
-// postcondition: vrai si la ville existe, faux sinon
-
-function existe($i,$j){
-return isset($this->villes[$i][$j]);
-}
-
-public function canAddPont($ville1, $ville2)
-{
-    // On vérifie si les villes sont alignées
-    if ($this->getVilleX($ville1) != $this->getVilleX($ville2) && $this->getVilleY($ville1) != $this->getVilleY($ville2) || $ville1 == $ville2) {
-        return false;
-    }
-    return true;
-}
-
-public function addPont($ville1, $ville2) {
-    if ($this->canAddPont($ville1, $ville2)) {
-        $this->getVilleById($ville1)->$v1->addPont($ville2);
-        $v2 = $this->getVilleById($ville2)->$v2->addPont($ville1);
-    }
-}
-
-//rajout d'éventuelles méthodes
-
-function toString(){
-  for ($i = 0; $i <= 6; $i++){
-    for ($j = 0; $j <= 6; $j++){
-      if ($this->getVille($i, $j)) {
-        echo "yes" . $i . $j;
+  public function getVilleById($id){
+    for ($x = 0; $x < 7; $x += 1) {
+      for ($y = 0; $y < 7; $y += 1) {
+        if ($this->getVille($x, $y) != null && $this->getVille($x, $y)->getId() == $id) {
+          return $this->getVille($x, $y);
+        }
       }
     }
   }
-}
+
+  public function getVilleX($id){
+    for ($x = 0; $x < 7; $x += 1) {
+      for ($y = 0; $y < 7; $y += 1) {
+        if ($this->getVille($x, $y) != null && $this->getVille($x, $y)->getId() == $id) {
+          return $x;
+        }
+      }
+    }
+  }
+
+  public function getVilleY($id){
+    for ($x = 0; $x < 7; $x += 1) {
+      for ($y = 0; $y < 7; $y += 1) {
+        if ($this->getVille($x, $y) != null && $this->getVille($x, $y)->getId() == $id) {
+          return $y;
+        }
+      }
+    }
+  }
+
+  public function setVille($i,$j,$nombrePonts){
+  $this->villes[$i][$j]->setNombrePonts($nombrePonts);
+  }
+
+  public function existe($i,$j){
+  return isset($this->villes[$i][$j]);
+  }
+
+  public function canAddPont($ville1, $ville2)
+  {
+      if ($this->getVilleX($ville1) != $this->getVilleX($ville2) && $this->getVilleY($ville1) != $this->getVilleY($ville2) || $ville1 == $ville2) {
+          return false;
+      }
+      return true;
+  }
+
+  public function addPont($ville1, $ville2) {
+      if ($this->canAddPont($ville1, $ville2)) {
+          $this->getVilleById($ville1)->$v1->addPont($ville2);
+          $v2 = $this->getVilleById($ville2)->$v2->addPont($ville1);
+      }
+  }
+
+  public function toString(){
+    for ($i = 0; $i <= 6; $i++){
+      for ($j = 0; $j <= 6; $j++){
+        if ($this->getVille($i, $j)) {
+          echo "yes" . $i . $j;
+        }
+      }
+    }
+  }
 }
