@@ -17,17 +17,16 @@ class Routeur {
   }
 
   public function routerRequete() {
+    if (!isset($_SESSION["connecter"])){
+      $_SESSION["connecter"] = false;
+    }
+
     if ($_SESSION["connecter"] == true){
       $this->ctrlJeu->jeu();
-    }
-    if ((isset($_POST["username"])) && (isset($_POST["password"]))) {
-      $_SESSION["connecter"] = true;
-      $this->ctrlAuthentification->verification($_POST["username"], $_POST["password"]);
     } else {
-      $this->ctrlAuthentification->accueil();
+      $this->ctrlAuthentification->Connexion();
     }
   }
-
 
 }
 ?>

@@ -24,7 +24,7 @@ private $connexion;
      $chaine="mysql:host=".HOST.";dbname=".BD;
      $this->connexion = new PDO($chaine,LOGIN,PASSWORD);
      $this->connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-   } catch(PDOException $e) {
+   } catch(PDOException $exception) {
      $exception=new ConnexionException("problème de connexion à la base");
      throw $exception;
    }

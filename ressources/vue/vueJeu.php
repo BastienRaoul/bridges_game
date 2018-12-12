@@ -2,7 +2,7 @@
 
 class VueJeu {
 
-  function afficherJeu($villes) { ?>
+  function afficherJeu() { ?>
     <html>
       <head>
         <title> Bridges </title>
@@ -25,10 +25,8 @@ class VueJeu {
               for ($j = 0; $j < 7; $j++) {
                 echo "<td>";
                 if ($villes->existe($i, $j)) {
-                  if ($ville == $villes->getVille($i, $j)->getId()){
-                    echo "<a class='selectionne' href='?ville=".$villes->getVille($i, $j)->getId()."'>".$villes->getVille($i, $j)->getNombrePontsMax()."</a>";
-                  }else
-                      echo "<a href='?ville=".$villes->getVille($i, $j)->getId()."'>".$villes->getVille($i, $j)->getNombrePontsMax()."</a>";
+                  $villeSelection = $villes->getVille($i, $j);
+                  echo "<a href='?ville=".$villeSelection->getId()."'>".$villeSelection->getNombrePontsMax()."</a>";
                 } else {
                   echo "&nbsp";
                 }

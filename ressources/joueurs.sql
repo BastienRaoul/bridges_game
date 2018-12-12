@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS `joueurs` (
 --
 
 INSERT INTO `joueurs` (`pseudo`, `motDePasse`) VALUES
-('titi', '$6$VsDCW/kqInRv$/bkDT4rmkNLGo704srZE1riI4u7IUUcSuuEqrdkeBJ.3RcsnEO.ihAnWvIWJ0fSoP3hVa/OpWTbhi50xQhzEk1'),
-('toto', '$6$RTRffX4m9FBU$GQPzOIuRByEJMeT8r9fydj8eKfi7yurb0SQiT./3pHnG5ni2f96gboxLE4LZgCgEVMWMP6z.AxaOM8KaWJCmn0');
+('titi', 'ti9WALcto5gZw'),
+('toto', 'tok.SOnXr50ss');
 
 --
 -- Indexes for dumped tables

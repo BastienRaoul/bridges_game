@@ -47,6 +47,22 @@ function existe($i,$j){
 return isset($this->villes[$i][$j]);
 }
 
+public function canAddPont($ville1, $ville2)
+{
+    // On vérifie si les villes sont alignées
+    if ($this->getVilleX($ville1) != $this->getVilleX($ville2) && $this->getVilleY($ville1) != $this->getVilleY($ville2) || $ville1 == $ville2) {
+        return false;
+    }
+    return true;
+}
+
+public function addPont($ville1, $ville2) {
+    if ($this->canAddPont($ville1, $ville2)) {
+        $this->getVilleById($ville1)->$v1->addPont($ville2);
+        $v2 = $this->getVilleById($ville2)->$v2->addPont($ville1);
+    }
+}
+
 //rajout d'éventuelles méthodes
 
 function toString(){
