@@ -35,17 +35,37 @@ class controleurJeu {
   function jeu() {
     $idVille = $_GET['ville'];
     $oldIdVille = $_GET['oldVille'];
-    $villes = unserialize($_SESSION['villes']);
-    for ($i = 0; $i < 7; $i++){
-      for ($j = 0; $j < 7; $j++){
-        if ($idVille == $villes->getVille($i, $j)->getId()){
+    /*echo 'ville: ';
+    var_dump($_GET['ville']);
+    echo 'oldVille: ';
+    var_dump($_GET['oldVille']);*/
+    if ($idVille != -1 && $oldIdVille != -1){ // Verifie qu'il existe 2 villes a relier (L'ancienne selectionnée et celle de maintenant)
+      $villes = unserialize($_SESSION['villes']);
+      for ($i = 0; $i < 7; $i++){
+        for ($j = 0; $j < 7; $j++){
+          if ($villes->existe($i, $j)){
+            $cmp = $villes->getVille($i, $j);
+            $cmp = $cmp->getId();
+          /*  echo 'cmp: ';
+            var_dump($cmp);
+            echo 'idVille: ';
+            var_dump($idVille);*/
+            if ($idVille == $cmp){
+              $villes->addPont($oldIdVille, $idVille);
+            }
+          }
         }
       }
+      $_SESSION['villes'] = serialize($villes);
+      unset ($_GET['ville']);
+      $idVille = -1;
+      $oldIdVille = -1;
+    } else {
+      $oldIdVille = $idVille;
+      $idVille = -1;
     }
-    $villes->addPont($oldIdVille, $idVille);
-    $_SESSION['villes'] = serialize($villes);
-    unset ($_GET['ville']);
-    $this->vue->afficherJeu($idVille);
+
+    $this->vue->afficherJeu($oldIdVille, $idVille);
   }
 }
 ?>

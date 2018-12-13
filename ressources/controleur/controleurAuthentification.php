@@ -31,8 +31,8 @@ class controleurAuthentification {
       $_SESSION['villes'] = serialize($this->villes);
       $this->jeu->constructTab();
       $oldIdVille = -1;
-      $idville = -1;
-      $this->vue->afficherJeu($oldIdVille, $idville);
+      $idVille = -1;
+      $this->vue->afficherJeu($oldIdVille, $idVille);
     } else {
       $this->authentification->errorAuthentification();
       $this->authentification->demandePseudo();
