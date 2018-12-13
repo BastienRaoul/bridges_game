@@ -23,9 +23,9 @@ class Villes{
   }
 
   public function getVilleById($id){
-    for ($x = 0; $x < 7; $x += 1) {
-      for ($y = 0; $y < 7; $y += 1) {
-        if ($this->getVille($x, $y) != null && $this->getVille($x, $y)->getId() == $id) {
+    for ($x = 0; $x <= 6; $x++) {
+      for ($y = 0; $y <= 6; $y++) {
+        if ($this->existe($x, $y) && $this->getVille($x, $y)->getId() == $id) {
           return $this->getVille($x, $y);
         }
       }
@@ -33,9 +33,9 @@ class Villes{
   }
 
   public function getVilleX($id){
-    for ($x = 0; $x < 7; $x += 1) {
-      for ($y = 0; $y < 7; $y += 1) {
-        if ($this->getVille($x, $y) != null && $this->getVille($x, $y)->getId() == $id) {
+    for ($x = 0; $x <= 6; $x++) {
+      for ($y = 0; $y <= 6; $y++) {
+        if ($this->existe($x, $y) && $this->getVille($x, $y)->getId() == $id) {
           return $x;
         }
       }
@@ -43,9 +43,9 @@ class Villes{
   }
 
   public function getVilleY($id){
-    for ($x = 0; $x < 7; $x += 1) {
-      for ($y = 0; $y < 7; $y += 1) {
-        if ($this->getVille($x, $y) != null && $this->getVille($x, $y)->getId() == $id) {
+    for ($x = 0; $x <= 6; $x++) {
+      for ($y = 0; $y <= 6; $y++) {
+        if ($this->existe($x, $y) && $this->getVille($x, $y)->getId() == $id) {
           return $y;
         }
       }
@@ -70,8 +70,10 @@ class Villes{
 
   public function addPont($ville1, $ville2) {
       if ($this->canAddPont($ville1, $ville2)) {
-          $this->getVilleById($ville1)->$v1->addPont($ville2);
-          $v2 = $this->getVilleById($ville2)->$v2->addPont($ville1);
+          $v1 = $this->getVilleById($ville1);
+          $v1->addPont($ville2);
+          $v2 = $this->getVilleById($ville2);
+          $v2->addPont($ville1);
       }
   }
 

@@ -39,6 +39,31 @@ function setNombrePonts($nb){
 $this->nombrePonts=$nb;
 }
 
+// Ajoute un pont entre notre ville et $ville
+// Si déjà deux ponts, les ponts sont enlevés
+function addPont($id) {
+    if ($this->villeLiees[$id] >= 2) {
+        $this->nombrePonts -= 3;
+        $this->villeLiees[$id] = -1;
+    }
+    $this->villeLiees[$id] += 1;
+    $this->nombrePonts += 1;
+}
+
+// Retourne le nombre de ponts (0, 1, 2) entre deux villes
+function getNbPonts($id) {
+    return $this->villesLiees[$id];
+}
+
+// Renvoie tous les ponts depuis cette ville
+function getAllPonts() {
+    return $this->villesLiees;
+}
+// Permet de savoir si une ville possède le nombre de pont qu'elle requière
+function estComplete() {
+    return $this->nombrePonts == $this->nombrePontsMax;
+}
+
 //il faut ici implémenter les méthodes qui permettent de lier des villes entre elles, ...
 
 }

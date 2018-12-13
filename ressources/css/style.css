@@ -1,9 +1,9 @@
 /* Commun à toutes les pages */
 html {
     background-color: #ccc;
-    color: #444;
+    color: #555;
     font-family: sans-serif;
-    font-size: 1.1em;
+    font-size: 1.0em;
 }
 
 body {
@@ -13,11 +13,11 @@ body {
     max-width: 50em;
     min-height: 100vh;
     background-color: #fff;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 h1, h2, h3 {
-    line-height: 1.2;
+    line-height: 1.0;
 }
 
 /* pour le jeu */
@@ -44,8 +44,8 @@ a {
     text-decoration: none;
 }
 a.complet {
-    background-color: lime;
-    border-color: green;
+    background-color: green;
+    border-color: black;
 }
 
 a.desactive {
@@ -55,7 +55,7 @@ a.desactive {
 
 a.selectionne {
     color: blue;
-    border-color: blue;
+    border-color: black;
 }
 
 a.erreur {

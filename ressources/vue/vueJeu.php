@@ -2,11 +2,11 @@
 
 class VueJeu {
 
-  function afficherJeu() { ?>
+  function afficherJeu($oldIdVille, $idville) { ?>
     <html>
       <head>
         <title> Bridges </title>
-        <link rel = "stylesheet" type = "text/css" href = " style.css">
+        <link rel = "stylesheet" type = "text/css" href = "css/style.css">
         <meta charset = "utf-8"/>
       </head>
       <body>
@@ -15,25 +15,35 @@ class VueJeu {
           <h1>Bridges</h1>
           <div id="jeu">
             <table>
-                <?php
-                $villes = unserialize($_SESSION['villes']);
-                if (isset($_SESSION['ville'])) {
-                    $ville = unserialize($_SESSION['ville']);
+              <?php
+              $villes = unserialize($_SESSION['villes']);
+              for ($i = 0; $i < 7; $i++){
+                echo "<tr>";
+                for ($j = 0; $j < 7; $j++){
+                  echo "<td>";
+                  if ($_SESSION['plateau'][$i][$j] == 'o' || $_SESSION['plateau'][$i][$j] == 'O'){ //Si c'est une ville
+                    $villeActuelle = $villes->getVille($i, $j);
+                    echo "<a href = '? ville = " . $villeActuelle->getId() . " & oldVille = " $oldIdVille.  . "' class = ' ";
+                    if ($idVille == $villeActuelle->getId()){ // Si la ville est selectionnée
+                      echo "selectionner";
+                    } elseif ($_SESSION['plateau'][$i][$j] == 'O'){ // Si la ville est finie
+                      echo "complete";
+                    } elseif ($villeActuelle->getNombrePontsMax() > $villeActuelle->getNombrePonts()){ // Si il y a trop de ponts
+                      echo "erreur";
+                    }
+                    // Besoin d'ajout ville desactive donc non possibilité de sélection
+                    echo "'>" . $villeActuelle->getNombrePontsMax() . "</a>";
+                  } elseif ($_SESSION['plateau'][$i][$j] != '/'){
+                    echo "ya un pont";
+                  } else {
+                    if ($_SESSION['plateau'][$i][$j] == '/'){ // Si c'est une case vide
+                      echo "&nbsp";
+                    }
+                  }
+                  echo "</td>";
                 }
-            for ($i = 0; $i < 7; $i++) {
-              echo "<tr>";
-              for ($j = 0; $j < 7; $j++) {
-                echo "<td>";
-                if ($villes->existe($i, $j)) {
-                  $villeSelection = $villes->getVille($i, $j);
-                  echo "<a href='?ville=".$villeSelection->getId()."'>".$villeSelection->getNombrePontsMax()."</a>";
-                } else {
-                  echo "&nbsp";
-                }
-                echo "</td>";
+                echo "</tr>";
               }
-              echo "</tr>";
-            }
             ?>
            </table>
           </div>
@@ -42,61 +52,6 @@ class VueJeu {
     </html>
   <?php
   }
-
-
-  function affichagePlateau($villes) { ?>
-  <html>
-    <head>
-      <title> Bridges </title>
-      <link rel = "stylesheet" type = "text/css" href = " css.css">
-      <meta charset = "utf-8"/>
-    </head>
-
-    <body bgcolor = "#FFFFFF">
-      <h1 style="text-align:center; margin-top:2%;">Bridges</h1>
-      <form>
-        <input type="button" value="Réinitialiser partie"> </input>
-        <input type="button" value="Annuler dernier mouvement"> </input>
-      </form>
-      <br/>
-      <?php $this->construirePlateau($villes); ?>
-
-<?php
- }
-
- function construirePlateau($villes) { ?>
-  <canvas id="plateauCanvas" width="700" height="700" style="border:1px solid #000000;"> </canvas>
-  <script "text/javascript">
-  var canvas = document.getElementById("plateauCanvas");
-  var ctx = canvas.getContext("2d");
-  <?php for($i = 0; $i <= 6; $i++){
-    for ($j = 0; $j <= 6; $j++){
-      if (isset($villes[$i][$j])) { ?>
-        ctx.beginPath();
-        ctx.arc(100 * <?php echo $i; ?> + 50, 100 * <?php echo $j; ?> + 50, 25, 0, 2 * Math.PI);
-        ctx.stroke();
-        ctx.fillText("<?php echo $villes[$i][$j]->getNombrePontsMax(); ?>", 100 * <?php echo $i; ?> + 47, 100 * <?php echo $j; ?> + 54);
-    <?php }
-    }
-  } ?>
-
-  function getPosMouse(event) {
-    var rect.canvas.getBoundingClientRect();
-      return {
-        x : event.clientX - rect.left,
-        y : event.clientY - rect.top
-      };
-  }
-
-  canvas.addEventListener("click", function(event) {
-    mousePos = getPosMouse(event);
-    <?php echo mousePos; ?>
-  }, false);
-
-  </script>
- <?php }
-
-
 
 /*
  array(4) {
