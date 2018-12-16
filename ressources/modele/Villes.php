@@ -14,12 +14,24 @@ class Villes{
     $this->villes[6][0]=new Ville("6",2,0);
   }
 
-  public function getVille($i,$j){
+  public function getVille($i,$j) {
     return $this->villes[$i][$j];
   }
 
-  public function getVilles(){
+  public function getVilles() {
     return $this->villes;
+  }
+
+  public function getNbVilles() {
+    $nbVilles = 0;
+    for ($x = 0; $x <= 6; $x++) {
+      for ($y = 0; $y <= 6; $y++) {
+        if ($this->existe($x, $y)) {
+          $nbVilles++;
+        }
+      }
+    }
+    return $nbVilles;
   }
 
   public function getVilleById($id){
@@ -60,12 +72,34 @@ class Villes{
   return isset($this->villes[$i][$j]);
   }
 
-  public function canAddPont($ville1, $ville2)
-  {
+  public function canAddPont($ville1, $ville2){
       if ($this->getVilleX($ville1) != $this->getVilleX($ville2) && $this->getVilleY($ville1) != $this->getVilleY($ville2) || $ville1 == $ville2) {
-          return false;
+        $_SESSION['erreur'] = true;
+        return false;
+      } else {
+        $xVille1 = $this->getVilleX($ville1);
+        $xVille2 = $this->getVilleX($ville2);
+        $yVille1 = $this->getVilleY($ville1);
+        $yVille2 = $this->getVilleY($ville2);
+        for ($i = min($yVille1, $yVille2) + 1; $i < max($yVille1, $yVille2) - 1; $i++){
+          if ($this->existe($xVille1, $i)){
+            if ($this->getVille($xVille1, $i) != $this->getVilleById($ville1) || $this->getVille($xVille1, $i) != $this->getVilleById($ville2)){
+              $_SESSION['erreur'] = true;
+              return false;
+            }
+          }
+        }
+        for ($i = min($xVille1, $xVille2) + 1; $i < max($xVille1, $xVille2) - 1; $i++){
+          if ($this->existe($i, $yVille1)){
+            if ($this->getVille($i, $yVille1) != $this->getVilleById($ville1) || $this->getVille($i, $yVille1) != $this->getVilleById($ville2)){
+              $_SESSION['erreur'] = true;
+              return false;
+            }
+          }
+        }
+        $_SESSION['erreur'] = false;
+        return true;
       }
-      return true;
   }
 
   public function addPont($idVille1, $idVille2) {
@@ -115,25 +149,6 @@ class Villes{
       $_SESSION['plateau'][$xVille2][$yVille2] = 'O';
     } else {
       $_SESSION['plateau'][$xVille2][$yVille2] = 'o';
-    }
-  }
-
-/*  public function addPont($ville1, $ville2) {
-      if ($this->canAddPont($ville1, $ville2)) {
-          $v1 = $this->getVilleById($ville1);
-          $v1->addPont($ville2);
-          $v2 = $this->getVilleById($ville2);
-          $v2->addPont($ville1);
-      }
-  }*/
-
-  public function toString(){
-    for ($i = 0; $i <= 6; $i++){
-      for ($j = 0; $j <= 6; $j++){
-        if ($this->getVille($i, $j)) {
-          echo "yes" . $i . $j;
-        }
-      }
     }
   }
 }

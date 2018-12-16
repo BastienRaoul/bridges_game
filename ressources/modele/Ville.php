@@ -41,6 +41,13 @@ class Ville{
   $this->nombrePonts=$nb;
   }
 
+  function reset(){
+    for ($i = 0; $i < 8; $i++){
+      $this->villesLiees[$i] = 0;
+    }
+    $this->setNombrePonts(0);
+  }
+
   // Ajoute un pont entre notre ville et $ville
   // Si déjà deux ponts, les ponts sont enlevés
   function addPont($id) {

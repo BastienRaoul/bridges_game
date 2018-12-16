@@ -27,11 +27,14 @@ class controleurAuthentification {
 
   function connexion($pseudo, $password) {
     if ($this->modele->exists($pseudo, $password)){
+      $_SESSION["pseudo"] = $pseudo;
       $_SESSION["connecter"] = true;
       $_SESSION['villes'] = serialize($this->villes);
+      $_SESSION['villesStart'] = serialize($this->villes);
       $this->jeu->constructTab();
       $oldIdVille = -1;
       $idVille = -1;
+      $_SESSION['erreur'] = false;
       $this->vue->afficherJeu($oldIdVille, $idVille);
     } else {
       $this->authentification->errorAuthentification();

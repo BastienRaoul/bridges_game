@@ -26,7 +26,8 @@ CREATE TABLE IF NOT EXISTS `joueurs` (
 
 INSERT INTO `joueurs` (`pseudo`, `motDePasse`) VALUES
 ('titi', 'ti9WALcto5gZw'),
-('toto', 'tok.SOnXr50ss');
+('toto', 'tok.SOnXr50ss'),
+('admin', 'adpexzg3FUZAk');
 
 --
 -- Indexes for dumped tables

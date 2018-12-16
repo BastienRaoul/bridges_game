@@ -1,4 +1,4 @@
-/* Commun à toutes les pages */
+/* Commun Ã  toutes les pages */
 html {
     background-color: #ccc;
     color: #555;
@@ -35,6 +35,22 @@ h1, h2, h3 {
     table-layout: fixed;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.actions-container {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+
+.actions-container > a {
+    width: 48%;
+}
+
 td.simplehorizontal {
     border-radius: 0;
     background: url("../vue/img/trait.png") center no-repeat;
@@ -69,7 +85,7 @@ a {
   font-weight: bold;
   color: black;
   border: 1px solid black;
-  background-color: #f5ffbf;
+  background-color: #AAAAAA;
   border-radius: 100%;
 }
 
@@ -84,11 +100,6 @@ a.desactiver {
 }
 
 a.selectionner {
-    color: blue;
-    border-color: black;
-}
-
-a.erreur {
-    background-color: red;
+    background-color: blue;
     border-color: black;
 }

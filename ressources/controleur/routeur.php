@@ -17,17 +17,27 @@ class Routeur {
   }
 
   public function routerRequete() {
-    echo '<form method="post" action="" style="white-space: nowrap"> <input type="submit" name="deconnexion" id="deconnexion" value="Deconnexion"> </form>';
     if (isset($_POST["deconnexion"])){
       session_destroy();
+      header('Location: index.php');
     }
-
+    
     if (!isset($_SESSION["connecter"])){
       $_SESSION["connecter"] = false;
     }
 
     if ($_SESSION["connecter"] == true){
-      $this->ctrlJeu->jeu();
+      if (isset($_POST["annulerCoup"])){
+        $this->ctrlJeu->annulerCoup();
+        header('Location: index.php');
+      } elseif (isset($_POST["recommencer"])){
+        $this->ctrlJeu->reset();
+        header('Location: index.php?ville=-1&oldVille=-1');
+      } elseif (isset($_POST["abandonner"])){
+        $this->ctrlJeu->affichageResultat("abandonner");
+      } else {
+        $this->ctrlJeu->jeu();
+      }
     } else {
       if(isset($_POST["pseudo"], $_POST["password"])){
         $this->ctrlAuthentification->connexion($_POST["pseudo"], $_POST["password"]);
