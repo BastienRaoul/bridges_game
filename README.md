@@ -1,7 +1,7 @@
 # Bridges
 
-Projet IUT Informatique.  
-Création du jeu bridge.
+Projet IUT Informatique  
+Création du jeu bridge   
 Pour plus d'informations sur le projet, voir le fichier miniProjetInfo22018.pdf.
 
 ## Installation :
